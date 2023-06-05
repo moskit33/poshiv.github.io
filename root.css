@@ -1,0 +1,26 @@
+
+:root{
+    box-sizing: border-box;
+    --time-tr: 0.15s;
+    --header-height: 56px;
+    --menu-button-size: 50px;
+    --li-menu: 10em;
+    --df: calc(var(--header-height) - var(--menu-button-size));
+    --index-panel: 0;
+    --index-menu: 20;
+    --index-order: 30;
+    --col-body: #eee;
+    --col-sect-rev: rgba(228, 155, 15,0.2);
+    --col-sect-map: rgba(228, 153, 15, 0.123);
+    --col-sect-map-butt: rgba(228, 153, 15, 0.8);
+    --col-rev-text: rgba(228, 155, 15,0.3);
+    --col-slider-butt: rgba(228, 155, 15);
+    --col-bebefits: #E2E2E2;
+    --col-menu: #e49b0f;
+    --col-menu-click: #cc8b0d;
+    --panel-center: 200px;
+    --panel-activ: all .4s ease-out;
+    --text-glav: calc(16px + 1.2vw);
+    font-size: calc(16px + 1vw);
+    color: #343434;
+}
