@@ -17,16 +17,16 @@ app.post("/send-email", async function (req, res) {
     port: 587,
     auth: {
       user: "moskit544@gmail.com",
-      pass: "uzkwbiiqkvwnstdd",
+      pass: "rqkrwbcewmwhzezr",
     },
   });
   console.log("BACKEND REQ", req.body);
   let mailOptions = {
-    from: '"Строительная компания" <foo@example.com>', // sender address
-    to: req.body.email, // list of receivers
-    subject: "Заявка строительной компании", // Subject line
-    text: `Добрый день ${req.body.firstName} ${req.body.lastName}! Вы оставили заяку на нашем сайте`, // plain text body
-    html: `<b>Добрый день ${req.body.firstName} ${req.body.lastName}! Вы оставили заяку на нашем сайте</b>`, // html body
+    from: '"Швейное предприятие" <foo@example.com>', // sender address
+    to: req.body.user_email, // list of receivers
+    subject: "Заявка на пошив одежды", // Subject line
+    text: `Добрый день ${req.body.user_name}! Вы оставили заяку на нашем сайте`, // plain text body
+    html: `<b>Добрый день ${req.body.user_name}! Вы оставили заяку на нашем сайте</b>`, // html body
   };
 
   let info = await transporter.sendMail(mailOptions);

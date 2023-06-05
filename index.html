@@ -225,17 +225,17 @@
                                     <label class="labelPost">
                                         <span>Имя*</span>
                                         <input type="name" name="user_name" placeholder="Введите имя..." required=""
-                                            class="inputPost" value="">
+                                            class="inputPost">
                                     </label>
                                     <label class="labelPost">
                                         <span>Телефон*</span>
                                         <input type="phone" name="user_phone" placeholder="Введите тел..." required=""
-                                            class="inputPost" value="">
+                                            class="inputPost">
                                     </label>
                                     <label class="labelPost">
                                         <span>Почта*</span>
                                         <input type="email" name="user_email" placeholder="Введите Email..." required=""
-                                            class="inputPost" value="">
+                                            class="inputPost">
                                     </label>
                                 </div>
                             </div>
@@ -279,14 +279,14 @@
                                 <p>Работаем на собственном и давальческом материале</p>
                             </div>
                         </div>
-                        <div class="glav-order--form">
-                            <div class="glav-order--text">
-                                <div>
+                        <!-- <div class="glav-order--form">
+                            <div class="glav-order--text"> -->
+                        <!-- <div>
                                     <p>Оставьте Ваши данные, чтобы наши менеджеры рассчитали заказ</p>
-                                </div>
+                                </div> -->
 
-                                <div class="">
-                                    <form method="post" enctype="multipart/form-data" id="formMail">
+                        <!-- <div class=""> -->
+                        <!-- <form method="post" enctype="multipart/form-data" id="formMail">
                                         <div class="mailform">
                                             <input type="name" name="user_name" placeholder="Введите имя..." required=""
                                                 value="">
@@ -294,11 +294,11 @@
                                                 required="" value="">
                                             <button type="submit" class="butt-main-form is-open">Отправить</button>
                                         </div>
-                                    </form>
-                                </div>
-
+                                    </form> -->
+                        <!-- </div> -->
+                        <!-- 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -719,11 +719,13 @@
                     <div class="">
                         <form method="post" enctype="multipart/form-data" id="formMail">
                             <div class="mailform">
-                                <input type="name" name="user_name" placeholder="Введите имя..." required="" value="">
-                                <input type="phone" name="user_phone" placeholder="Введите тел..." required="" value="">
-                                <input type="email" name="user_email" placeholder="Введите Email..." required=""
-                                    value="">
-                                <button type="submit" class="butt-main-form is-open">Отправить</button>
+                                <input id="user_name" type="name" name="user_name" placeholder="Введите имя..."
+                                    required="">
+                                <input id="user_phone" type="phone" name="user_phone" placeholder="Введите тел..."
+                                    required="">
+                                <input id="user_email" type="email" name="user_email" placeholder="Введите Email..."
+                                    required="">
+                                <button id="formButton" type="submit" class="butt-main-form is-open">Отправить</button>
                             </div>
                         </form>
                     </div>
@@ -827,6 +829,36 @@
         style="display: none;"></object><span id="__symantecMPKIClientDetector" style="display: none;">__PRESENT</span>
     <script
         data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s; while (i--) { e = E[i]; if ((d = e.getAttribute(k1)) !== null && !e.shadowRoot && e.attachShadow) { s = e.attachShadow({ mode: 'open' }); s.innerHTML = d; e.removeAttribute(k1); } if ((d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if (e.shadowRoot) { fn(e.shadowRoot); } } }; fn(document); })()</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById('formMail');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const data = {
+                    user_name: document.getElementById('user_name').value,
+                    user_phone: document.getElementById('user_phone').value,
+                    user_email: document.getElementById('user_email').value
+                };
+                console.log("data", data)
+
+                fetch("/send-email", {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    </script>
 </body>
 <grammarly-desktop-integration data-grammarly-shadow-root="true"
     data-scrapbook-shadowdom="<style>
